@@ -43,6 +43,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     Console.WriteLine($"Login Path is set to: {options.LoginPath}");
     // Output : /Account/Login
     // By Default, This will be the path, but you can change it.
+    options.AccessDeniedPath = "/Account/AccessDenied";
 });
 
 var app = builder.Build();
