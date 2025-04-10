@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Practical_17.Models;
 using Practical_17.ViewModels;
 
 namespace Practical_17.Controllers
 {
+    [Authorize]
     public class StudentsController : Controller
     {
         private readonly HttpClient _client;
@@ -22,6 +24,7 @@ namespace Practical_17.Controllers
             return View(_mapper.Map<List<StudentViewModel>>(response));
         }
 
+        [Authorize(Roles = "User")]
         public IActionResult Create() => View();
 
         [HttpPost]
@@ -37,6 +40,7 @@ namespace Practical_17.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> Edit(int id)
         {
             var student = await _client.GetFromJsonAsync<Student>($"/api/studentsApi/{id}");
@@ -65,6 +69,7 @@ namespace Practical_17.Controllers
             return View(_mapper.Map<StudentViewModel>(student));
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var student = await _client.GetFromJsonAsync<Student>($"/api/studentsApi/{id}");

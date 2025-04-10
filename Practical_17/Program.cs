@@ -37,6 +37,14 @@ builder.Services.AddIdentity<User, IdentityRole>(options =>
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    // Log to console
+    Console.WriteLine($"Login Path is set to: {options.LoginPath}");
+    // Output : /Account/Login
+    // By Default, This will be the path, but you can change it.
+});
+
 var app = builder.Build();
 
 await SeedService.SeedDatabase(app.Services);
