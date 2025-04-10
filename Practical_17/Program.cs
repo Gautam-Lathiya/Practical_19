@@ -24,7 +24,7 @@ builder.Services.AddHttpClient("StudentApiClient", client =>
 
 builder.Services.AddIdentity<User, IdentityRole>(options =>
 {
-    options.SignIn.RequireConfirmedAccount = true;
+    options.SignIn.RequireConfirmedAccount = false;
     options.SignIn.RequireConfirmedEmail = false;
     options.SignIn.RequireConfirmedPhoneNumber = false;
     options.Password.RequiredLength = 6;

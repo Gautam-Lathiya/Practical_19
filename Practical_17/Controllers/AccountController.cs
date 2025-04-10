@@ -33,6 +33,7 @@ namespace Practical_17.Controllers
                 return View(model);
             }
 
+            var user = await _userManager.FindByEmailAsync(model.Email);
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
 
             if (result.Succeeded)

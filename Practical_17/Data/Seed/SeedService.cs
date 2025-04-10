@@ -33,8 +33,8 @@ namespace Practical_17.Data.Seed
                     {
                         FirstName = "Admin",
                         LastName = "User",
-                        UserName = "admin",
-                        NormalizedUserName = "ADMIN",
+                        UserName = adminEmail,
+                        NormalizedUserName = adminEmail.ToUpper(),
                         Email = adminEmail,
                         NormalizedEmail = adminEmail.ToUpper(),
                         EmailConfirmed = true,
